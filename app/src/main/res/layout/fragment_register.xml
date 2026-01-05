@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_dynamic_primary20"
+    android:orientation="vertical"
+    tools:context=".Register">
+
+    <EditText
+        android:id="@+id/Name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Name"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <EditText
+        android:id="@+id/LastName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Last Name"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <EditText
+        android:id="@+id/NewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="E-mail"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <EditText
+        android:id="@+id/NewPass"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="Password"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <EditText
+        android:id="@+id/Phone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="phone"
+        android:text="Phone"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/BackToLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/buttondesign"
+        android:text="Register"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+</LinearLayout>

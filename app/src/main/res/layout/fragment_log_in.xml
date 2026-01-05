@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_dynamic_primary20"
+    android:orientation="vertical"
+    tools:context=".LogIn">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:text="STOCKS PORTFOLIO"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:text="Email"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="34sp" />
+
+        <EditText
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="Password"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="34sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.8"
+        android:background="@drawable/buttondesign"
+        android:text="LogIn"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/RegisterButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.8"
+        android:background="@drawable/buttondesign"
+        android:text="Resgister"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+</LinearLayout>
