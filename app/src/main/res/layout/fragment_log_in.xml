@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,16 +8,12 @@
     android:orientation="vertical"
     tools:context=".LogIn">
 
-    <TextView
-        android:id="@+id/textView3"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.6"
-        android:text="STOCKS PORTFOLIO"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+        android:src="@drawable/_7670525" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,24 +46,31 @@
             android:textSize="34sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/LoginButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.8"
-        android:background="@drawable/buttondesign"
-        android:text="LogIn"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/RegisterButton"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.8"
-        android:background="@drawable/buttondesign"
-        android:text="Resgister"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
+        <Button
+            android:id="@+id/LoginButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/buttondesign"
+            android:text="LogIn"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/RegisterButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/buttondesign"
+            android:text="Resgister"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </LinearLayout>
