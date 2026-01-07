@@ -67,7 +67,8 @@ public class LogIn extends Fragment {
         buttonToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_logIn2_to_homePage2);
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.login();
             }
         });
         Button buttonToRegister = view.findViewById(R.id.RegisterButton);

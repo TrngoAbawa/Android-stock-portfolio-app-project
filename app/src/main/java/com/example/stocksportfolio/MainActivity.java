@@ -1,14 +1,25 @@
 package com.example.stocksportfolio;
 
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +31,44 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        mAuth = FirebaseAuth.getInstance();
+    }
+    public void login() {
+        String email = ((EditText)findViewById(R.id.Email)).getText().toString();
+        String password = ((EditText)findViewById(R.id.Password)).getText().toString();
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_LONG).show();
+                            NavHostFragment navFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+                            navFragment.getNavController().navigate(R.id.action_logIn2_to_homePage2);
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "Login fail", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+    public void register() {
+        String email = ((EditText)findViewById(R.id.NewEmail)).getText().toString();
+        String password = ((EditText)findViewById(R.id.NewPass)).getText().toString();
+        String name = ((EditText)findViewById(R.id.Name)).getText().toString();
+        String lastName = ((EditText)findViewById(R.id.LastName)).getText().toString();
+        String phone = ((EditText)findViewById(R.id.Phone)).getText().toString();
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Registration successful", Toast.LENGTH_LONG).show();
+                            NavHostFragment navFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+                            navFragment.getNavController().navigate(R.id.action_register2_to_logIn2);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Registration fail", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 }
