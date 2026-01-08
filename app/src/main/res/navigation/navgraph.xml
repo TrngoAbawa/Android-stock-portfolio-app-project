@@ -11,11 +11,11 @@
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
-            android:id="@+id/action_logIn2_to_homePage2"
-            app:destination="@id/homePage2" />
-        <action
             android:id="@+id/action_logIn2_to_register2"
             app:destination="@id/register2" />
+        <action
+            android:id="@+id/action_logIn2_to_checkPage"
+            app:destination="@id/checkPage" />
     </fragment>
     <fragment
         android:id="@+id/register2"
@@ -27,8 +27,17 @@
             app:destination="@id/logIn2" />
     </fragment>
     <fragment
-        android:id="@+id/homePage2"
+        android:id="@+id/homePage"
         android:name="com.example.stocksportfolio.HomePage"
         android:label="fragment_home_page"
         tools:layout="@layout/fragment_home_page" />
+    <fragment
+        android:id="@+id/checkPage"
+        android:name="com.example.stocksportfolio.CheckPage"
+        android:label="fragment_check_page"
+        tools:layout="@layout/fragment_check_page" >
+        <action
+            android:id="@+id/action_checkPage_to_homePage"
+            app:destination="@id/homePage" />
+    </fragment>
 </navigation>

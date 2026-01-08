@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_LONG).show();
                             NavHostFragment navFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-                            navFragment.getNavController().navigate(R.id.action_logIn2_to_homePage2);
+                            navFragment.getNavController().navigate(R.id.action_logIn2_to_checkPage);
 
                         } else {
                             Toast.makeText(MainActivity.this, "Login fail", Toast.LENGTH_LONG).show();
@@ -66,13 +66,17 @@ public class MainActivity extends AppCompatActivity {
         String name = ((EditText)findViewById(R.id.Name)).getText().toString();
         String lastName = ((EditText)findViewById(R.id.LastName)).getText().toString();
         String phone = ((EditText)findViewById(R.id.Phone)).getText().toString();
+        if (email.isEmpty() || password.isEmpty() || name.isEmpty() || lastName.isEmpty() || phone.isEmpty()) {
+            Toast.makeText(MainActivity.this, "Please enter all fields", Toast.LENGTH_LONG).show();
+            return;
+        }
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Registration successful", Toast.LENGTH_LONG).show();
-                            writeToDB();
+                            writeToDB(email, password, name, lastName, phone);
                             NavHostFragment navFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
                             navFragment.getNavController().navigate(R.id.action_register2_to_logIn2);
                         } else {
@@ -82,12 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    public void writeToDB(){
-        String name = ((EditText)findViewById(R.id.Name)).getText().toString();
-        String email = ((EditText)findViewById(R.id.NewEmail)).getText().toString();
-        String lastName = ((EditText)findViewById(R.id.LastName)).getText().toString();
-        String password = ((EditText)findViewById(R.id.NewPass)).getText().toString();
-        String phone = ((EditText)findViewById(R.id.Phone)).getText().toString();
+    public void writeToDB(String email, String password, String name, String lastName, String phone){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child(phone);
         User user = new User(email, password, name, lastName, phone);
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void readFromDB() {
-        String phone = ((EditText)findViewById(R.id.Phone)).getText().toString();
+        String phone = ((EditText)findViewById(R.id.EnterPhone)).getText().toString();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child(phone);
         myRef.addValueEventListener(new ValueEventListener() {

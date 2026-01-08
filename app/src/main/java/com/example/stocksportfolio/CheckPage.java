@@ -3,8 +3,6 @@ package com.example.stocksportfolio;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavAction;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +11,10 @@ import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LogIn#newInstance} factory method to
+ * Use the {@link CheckPage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LogIn extends Fragment {
+public class CheckPage extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +25,7 @@ public class LogIn extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LogIn() {
+    public CheckPage() {
         // Required empty public constructor
     }
 
@@ -37,11 +35,11 @@ public class LogIn extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LogIn.
+     * @return A new instance of fragment HomePage.
      */
     // TODO: Rename and change types and number of parameters
-    public static LogIn newInstance(String param1, String param2) {
-        LogIn fragment = new LogIn();
+    public static CheckPage newInstance(String param1, String param2) {
+        CheckPage fragment = new CheckPage();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,22 +60,13 @@ public class LogIn extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_log_in, container, false);
-        Button buttonToCheck = view.findViewById(R.id.LoginButton);
+        View view = inflater.inflate(R.layout.fragment_check_page, container, false);
+        Button buttonToCheck = view.findViewById(R.id.CheckPhone);
         buttonToCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.login();
-            }
-        });
-        Button buttonToRegister = view.findViewById(R.id.RegisterButton);
-        buttonToRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.login();
-                Navigation.findNavController(view).navigate(R.id.action_logIn2_to_register2);
+                mainActivity.readFromDB();
             }
         });
         return view;
