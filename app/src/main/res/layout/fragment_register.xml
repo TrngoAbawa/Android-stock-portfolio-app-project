@@ -12,9 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="Name"
+        android:hint="Name"
         android:textAlignment="viewStart"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="24sp" />
 
     <EditText
@@ -22,8 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="Last Name"
+        android:hint="Last Name"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="24sp" />
 
     <EditText
@@ -32,9 +34,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:ems="10"
+        android:hint="E-mail"
         android:inputType="textEmailAddress"
-        android:text="E-mail"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="24sp" />
 
     <EditText
@@ -43,9 +46,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword"
-        android:text="Password"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="24sp" />
 
     <EditText
@@ -54,9 +58,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:ems="10"
+        android:hint="Phone"
         android:inputType="phone"
-        android:text="Phone"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="24sp" />
 
     <Button

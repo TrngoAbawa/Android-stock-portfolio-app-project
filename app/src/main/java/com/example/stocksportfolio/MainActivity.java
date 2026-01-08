@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     public void login() {
         String email = ((EditText)findViewById(R.id.Email)).getText().toString();
         String password = ((EditText)findViewById(R.id.Password)).getText().toString();
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(MainActivity.this, "Please enter email and password", Toast.LENGTH_LONG).show();
+            return;
+        }
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -79,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void writeToDB(){
-        String email = ((EditText)findViewById(R.id.NewEmail)).getText().toString();
-        String password = ((EditText)findViewById(R.id.NewPass)).getText().toString();
         String name = ((EditText)findViewById(R.id.Name)).getText().toString();
+        String email = ((EditText)findViewById(R.id.NewEmail)).getText().toString();
         String lastName = ((EditText)findViewById(R.id.LastName)).getText().toString();
+        String password = ((EditText)findViewById(R.id.NewPass)).getText().toString();
         String phone = ((EditText)findViewById(R.id.Phone)).getText().toString();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child(phone);
@@ -91,10 +95,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void readFromDB() {
-        String email = ((EditText)findViewById(R.id.NewEmail)).getText().toString();
-        String password = ((EditText)findViewById(R.id.NewPass)).getText().toString();
-        String name = ((EditText)findViewById(R.id.Name)).getText().toString();
-        String lastName = ((EditText)findViewById(R.id.LastName)).getText().toString();
         String phone = ((EditText)findViewById(R.id.Phone)).getText().toString();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child(phone);

@@ -27,10 +27,11 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:ems="10"
+            android:hint="E-mail"
             android:inputType="textEmailAddress"
-            android:text="Email"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="24sp" />
 
         <EditText
@@ -39,23 +40,26 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:ems="10"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:text="Password"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.8"
+        android:layout_weight="0.7"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/LoginButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:background="@drawable/buttondesign"
             android:text="LogIn"
@@ -66,6 +70,8 @@
             android:id="@+id/RegisterButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:background="@drawable/buttondesign"
             android:text="Register"
