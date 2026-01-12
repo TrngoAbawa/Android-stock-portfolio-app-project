@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         });
         mAuth = FirebaseAuth.getInstance();
     }
+
     public void login() {
         String email = ((EditText)findViewById(R.id.Email)).getText().toString();
         String password = ((EditText)findViewById(R.id.Password)).getText().toString();
@@ -103,8 +104,9 @@ public class MainActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 User value = dataSnapshot.getValue(User.class);
-            }
 
+
+            }
             @Override
             public void onCancelled(DatabaseError error) {
                 Toast.makeText(MainActivity.this, "Error" + error, Toast.LENGTH_LONG).show();
