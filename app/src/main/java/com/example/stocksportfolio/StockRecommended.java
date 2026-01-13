@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +12,10 @@ import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomePage#newInstance} factory method to
+ * Use the {@link StockRecommended#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomePage extends Fragment {
+public class StockRecommended extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +26,7 @@ public class HomePage extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public HomePage() {
+    public StockRecommended() {
         // Required empty public constructor
     }
 
@@ -37,11 +36,11 @@ public class HomePage extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomePage.
+     * @return A new instance of fragment StockSearch.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomePage newInstance(String param1, String param2) {
-        HomePage fragment = new HomePage();
+    public static StockRecommended newInstance(String param1, String param2) {
+        StockRecommended fragment = new StockRecommended();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,19 +61,19 @@ public class HomePage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        Button buttonToRec = view.findViewById(R.id.HomeToRec);
-        buttonToRec.setOnClickListener(new View.OnClickListener() {
+        View view  = inflater.inflate(R.layout.fragment_stock_recommended, container, false);
+        Button buttonToHome = view.findViewById(R.id.RecToHome);
+        buttonToHome.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_homePage_to_stockRecommended);
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_stockRecommended_to_homePage);
             }
         });
-        Button buttonToAdd = view.findViewById(R.id.HomeToAdd);
+        Button buttonToAdd = view.findViewById(R.id.RecToAdd);
         buttonToAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_homePage_to_addStocks);
+                Navigation.findNavController(v).navigate(R.id.action_stockRecommended_to_addStocks);
             }
         });
         return view;

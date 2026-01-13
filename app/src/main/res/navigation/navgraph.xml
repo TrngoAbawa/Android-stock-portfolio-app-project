@@ -30,7 +30,14 @@
         android:id="@+id/homePage"
         android:name="com.example.stocksportfolio.HomePage"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePage_to_stockRecommended"
+            app:destination="@id/stockRecommended" />
+        <action
+            android:id="@+id/action_homePage_to_addStocks"
+            app:destination="@id/addStocks" />
+    </fragment>
     <fragment
         android:id="@+id/checkPage"
         android:name="com.example.stocksportfolio.CheckPage"
@@ -39,5 +46,29 @@
         <action
             android:id="@+id/action_checkPage_to_homePage"
             app:destination="@id/homePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/stockRecommended"
+        android:name="com.example.stocksportfolio.StockRecommended"
+        android:label="fragment_stock_recommended"
+        tools:layout="@layout/fragment_stock_recommended" >
+        <action
+            android:id="@+id/action_stockRecommended_to_homePage"
+            app:destination="@id/homePage" />
+        <action
+            android:id="@+id/action_stockRecommended_to_addStocks"
+            app:destination="@id/addStocks" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStocks"
+        android:name="com.example.stocksportfolio.AddStocks"
+        android:label="fragment_add_stocks"
+        tools:layout="@layout/fragment_add_stocks" >
+        <action
+            android:id="@+id/action_addStocks_to_homePage"
+            app:destination="@id/homePage" />
+        <action
+            android:id="@+id/action_addStocks_to_stockRecommended"
+            app:destination="@id/stockRecommended" />
     </fragment>
 </navigation>

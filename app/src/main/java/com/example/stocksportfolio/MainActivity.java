@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private static final String BASE="https://yfinancerestapi.com/api/v1/";
+    private static final String BASE = "https://yfinancerestapi.com/api/v1/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
