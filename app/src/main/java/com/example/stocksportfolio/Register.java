@@ -68,7 +68,6 @@ public class Register extends Fragment {
             public void onClick(View view) {
                 MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.register();
-                Navigation.findNavController(view).navigate(R.id.action_register2_to_logIn2);
             }
         });
         return view;

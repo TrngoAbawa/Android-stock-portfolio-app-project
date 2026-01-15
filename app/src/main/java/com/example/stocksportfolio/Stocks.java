@@ -7,5 +7,6 @@ public class Stocks {
     private String name;
     @SerializedName("symbol")
     private String symbol;
-
+    @SerializedName("close")
+    private String price;
 }
