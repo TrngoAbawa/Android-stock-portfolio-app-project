@@ -1,6 +1,7 @@
 package com.example.stocksportfolio;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,6 +24,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String BASE = "https://yfinancerestapi.com/api/v1/";
@@ -39,7 +48,36 @@ public class MainActivity extends AppCompatActivity {
         });
         mAuth = FirebaseAuth.getInstance();
     }
+   private void fetchstocks() {
+       Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE).addConverterFactory(GsonConverterFactory.create()).build();
+       StockAPIService service = retrofit.create(StockAPIService.class);
+       Call<List<Stocks>> call = service.GetAllStocks();
+       call.enqueue(new Callback<List<Stocks>>() {
+           @Override
+           public void onResponse(Call<List<Stocks>> call, Response<List<Stocks>> response) {
+               if (response.isSuccessful() && response.body() != null) {
+                   List<Stocks> stocksList = response.body();
+                   if (stocksList.size() != 0) {
+                       for (Stocks stock : stocksList) {
+                           Log.d("result: ", stock.getname());
+                           Log.d("result: ", stock.getsymbol());
+                           Log.d("result: ", stock.getprice());
+                       }
+                   } else {
+                       Log.d("result: ", "No stocks found");
+                   }
+               } else {
+                   Log.d("result: ", "Response not successful");
+               }
+           }
 
+           @Override
+           public void onFailure(Call<List<Stocks>> call, Throwable t) {
+               Log.d("result : " ,"Api call failed"+ t.getMessage() );
+
+           }
+       });
+   }
     public void login() {
         String email = ((EditText)findViewById(R.id.Email)).getText().toString();
         String password = ((EditText)findViewById(R.id.Password)).getText().toString();
