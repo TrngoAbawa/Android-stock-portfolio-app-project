@@ -54,7 +54,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.7"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
