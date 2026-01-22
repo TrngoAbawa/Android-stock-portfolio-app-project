@@ -4,18 +4,18 @@ import com.google.gson.annotations.SerializedName;
 
 public class Stocks {
     @SerializedName("name")
-    private Name name;
+    private static Name name;
     @SerializedName("symbol")
-    private Symbol symbol;
+    private static Symbol symbol;
     @SerializedName("close")
-    private String price;
-    public String getname(){
+    private static String price;
+    public static String getname(){
         return name.getName();
     }
-    public String getsymbol(){
+    public static String getsymbol(){
         return symbol.getSymbol();
     }
-    public String getprice(){
+    public static String getprice(){
         return price;
     }
 }

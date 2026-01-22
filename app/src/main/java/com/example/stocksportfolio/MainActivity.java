@@ -3,6 +3,7 @@ package com.example.stocksportfolio;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -11,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -56,46 +56,48 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+       fetchstocks();
+    }
+    private void fetchstocks() {
         mAuth = FirebaseAuth.getInstance();
-        dataset = new ArrayList<>();
         recyclerView = findViewById(R.id.RecyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        StockAPIService service = retrofit.create(StockAPIService.class);
+        Call<List<Stocks>> call = service.GetAllStocks();
+        call.enqueue(new Callback<List<Stocks>>() {
+            @Override
+            public void onResponse(Call<List<Stocks>> call, Response<List<Stocks>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Stocks> stocksList = response.body();
+                    adapter = new CustomeAdapter(stocksList);
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    Log.d("result: ", "Response not successful");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Stocks>> call, Throwable t) {
+                Log.d("result : " ,"Api call failed"+ t.getMessage() );
+            }
+        });
+    }
+    public void stockView(){
+        TextView stockName = findViewById(R.id.StockName);
+        TextView stockSymbol = findViewById(R.id.StockSymbol);
+        TextView stockPrice = findViewById(R.id.StockPrice);
+        if (stockName != null && stockSymbol != null && stockPrice != null){
+            stockName.setText(Stocks.getname());
+            stockSymbol.setText(Stocks.getsymbol());
+            stockPrice.setText(String.valueOf(Stocks.getprice()));
+        }
     }
 
-   private void fetchstocks() {
-       Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE).addConverterFactory(GsonConverterFactory.create()).build();
-       StockAPIService service = retrofit.create(StockAPIService.class);
-       Call<List<Stocks>> call = service.GetAllStocks();
-       call.enqueue(new Callback<List<Stocks>>() {
-           @Override
-           public void onResponse(Call<List<Stocks>> call, Response<List<Stocks>> response) {
-               if (response.isSuccessful() && response.body() != null) {
-                   List<Stocks> stocksList = response.body();
-                   if (stocksList.size() != 0) {
-                       for (Stocks stock : stocksList) {
-                           Log.d("result: ", stock.getname());
-                           Log.d("result: ", stock.getsymbol());
-                           Log.d("result: ", stock.getprice());
-                       }
-                   } else {
-                       Log.d("result: ", "No stocks found");
-                   }
-               } else {
-                   Log.d("result: ", "Response not successful");
-               }
-           }
-
-           @Override
-           public void onFailure(Call<List<Stocks>> call, Throwable t) {
-               Log.d("result : " ,"Api call failed"+ t.getMessage() );
-
-           }
-       });
-   }
     public void login() {
         String email = ((EditText)findViewById(R.id.Email)).getText().toString();
         String password = ((EditText)findViewById(R.id.Password)).getText().toString();
@@ -161,8 +163,6 @@ public class MainActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 User value = dataSnapshot.getValue(User.class);
-
-
             }
             @Override
             public void onCancelled(DatabaseError error) {
