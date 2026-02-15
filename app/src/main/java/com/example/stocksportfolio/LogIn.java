@@ -68,7 +68,9 @@ public class LogIn extends Fragment {
             @Override
             public void onClick(View view) {
                 MainActivity mainActivity = (MainActivity) getActivity();
+                if (mainActivity != null){
                 mainActivity.login();
+                }
             }
         });
         Button buttonToRegister = view.findViewById(R.id.RegisterButton);

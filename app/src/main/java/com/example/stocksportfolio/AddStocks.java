@@ -63,7 +63,8 @@ public class AddStocks extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_stocks, container, false);
         Button buttonToHome = view.findViewById(R.id.AddToHome);
-
+        MainActivity mainActivity=(MainActivity) getActivity();
+        mainActivity.fetchstocks();
         buttonToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
